@@ -1,4 +1,4 @@
-import 'media.dart';
+import 'style/media.dart';
 
 enum Converter {
   longitude(Media.icLongitude, 'Longitude'),
