@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart'
+    as inset;
 import 'package:flutter_svg/svg.dart';
 
 import '../../common/converter.dart';
 import '../../common/style/color.dart';
+import '../../common/style/media.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -16,20 +19,32 @@ class HomePage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 24.0),
             child: Column(
               children: [
-                GridView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 16.0,
-                    mainAxisSpacing: 24.0,
-                    childAspectRatio: .85,
+                const SizedBox(height: 32.0),
+                Container(
+                  height: kToolbarHeight,
+                  width: double.infinity,
+                  decoration: inset.BoxDecoration(
+                    borderRadius: BorderRadius.circular(16.0),
+                    color: ColorPalette.background,
+                    boxShadow: [
+                      inset.BoxShadow(
+                        offset: -const Offset(2, 2),
+                        blurRadius: 4.0,
+                        color: ColorPalette.primary,
+                        inset: true,
+                      ),
+                      inset.BoxShadow(
+                        offset: const Offset(2, 2),
+                        blurRadius: 2.0,
+                        color: ColorPalette.shadow,
+                        inset: true,
+                      ),
+                    ],
                   ),
-                  itemCount: Converter.values.length,
-                  itemBuilder: (_, index) => _CategoryItem(
-                    item: Converter.values[index],
-                  ),
+                  child: const _CustomInput(),
                 ),
+                const SizedBox(height: 32.0),
+                _buildCategoryList(),
               ],
             ),
           ),
@@ -37,6 +52,60 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
+
+  Widget _buildCategoryList() => GridView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 16.0,
+          mainAxisSpacing: 24.0,
+          childAspectRatio: .85,
+        ),
+        itemCount: Converter.values.length,
+        itemBuilder: (_, index) => _CategoryItem(
+          item: Converter.values[index],
+        ),
+      );
+}
+
+class _CustomInput extends StatelessWidget {
+  const _CustomInput({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: Center(
+        child: TextField(
+          decoration: _buildInputDecoration(),
+          textAlignVertical: TextAlignVertical.center,
+          cursorColor: ColorPalette.primary,
+          style: const TextStyle(
+            fontSize: 16.0,
+            color: ColorPalette.content,
+          ),
+        ),
+      ),
+    );
+  }
+
+  InputDecoration _buildInputDecoration() => InputDecoration(
+        border: InputBorder.none,
+        contentPadding: const EdgeInsets.only(bottom: .0),
+        isDense: true,
+        suffixIcon: SvgPicture.asset(
+          Media.icSearch,
+          height: 24.0,
+          color: ColorPalette.content,
+        ),
+        suffixIconConstraints: const BoxConstraints(
+          minHeight: 32.0,
+        ),
+      );
 }
 
 class _CategoryItem extends StatelessWidget {
