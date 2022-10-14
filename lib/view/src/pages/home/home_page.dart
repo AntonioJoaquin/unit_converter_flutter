@@ -6,7 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../locator.dart';
 import '../../common/converter.dart';
 import '../../common/style/color.dart';
-import '../../common/style/media.dart';
+import '../../common/widgets/custom_input.dart';
 import 'home_manager.dart';
 
 class HomePage extends StatefulWidget {
@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ],
                   ),
-                  child: const _CustomInput(),
+                  child: const CustomInput(),
                 ),
                 const SizedBox(height: 32.0),
                 _buildCategoryList(),
@@ -82,45 +82,6 @@ class _HomePageState extends State<HomePage> {
         itemBuilder: (_, index) => _CategoryItem(
           _manager,
           item: Converter.values[index],
-        ),
-      );
-}
-
-class _CustomInput extends StatelessWidget {
-  const _CustomInput({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: Center(
-        child: TextField(
-          decoration: _buildInputDecoration(),
-          textAlignVertical: TextAlignVertical.center,
-          cursorColor: ColorPalette.primary,
-          style: const TextStyle(
-            fontSize: 16.0,
-            color: ColorPalette.content,
-          ),
-        ),
-      ),
-    );
-  }
-
-  InputDecoration _buildInputDecoration() => InputDecoration(
-        border: InputBorder.none,
-        contentPadding: const EdgeInsets.only(bottom: .0),
-        isDense: true,
-        suffixIcon: SvgPicture.asset(
-          Media.icSearch,
-          height: 24.0,
-          color: ColorPalette.content,
-        ),
-        suffixIconConstraints: const BoxConstraints(
-          minHeight: 32.0,
         ),
       );
 }
