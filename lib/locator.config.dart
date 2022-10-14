@@ -5,9 +5,11 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:flutter/widgets.dart' as _i5;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
+import 'core/services/navigation_service.dart' as _i4;
 import 'view/src/pages/home/home_manager.dart'
     as _i3; // ignore_for_file: unnecessary_lambdas
 
@@ -24,5 +26,7 @@ _i1.GetIt $initGetIt(
     environmentFilter,
   );
   gh.factory<_i3.HomeManager>(() => _i3.HomeManager());
+  gh.lazySingleton<_i4.NavigationService>(
+      () => _i4.NavigationService(get<_i5.GlobalKey<_i5.NavigatorState>>()));
   return get;
 }

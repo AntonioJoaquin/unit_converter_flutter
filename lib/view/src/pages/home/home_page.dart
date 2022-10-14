@@ -3,12 +3,28 @@ import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart'
     as inset;
 import 'package:flutter_svg/svg.dart';
 
+import '../../../../locator.dart';
 import '../../common/converter.dart';
 import '../../common/style/color.dart';
 import '../../common/style/media.dart';
+import 'home_manager.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final HomeManager _manager = locator<HomeManager>();
+
+  @override
+  void dispose() {
+    _manager.dispose();
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,6 +80,7 @@ class HomePage extends StatelessWidget {
         ),
         itemCount: Converter.values.length,
         itemBuilder: (_, index) => _CategoryItem(
+          _manager,
           item: Converter.values[index],
         ),
       );
@@ -109,45 +126,50 @@ class _CustomInput extends StatelessWidget {
 }
 
 class _CategoryItem extends StatelessWidget {
-  const _CategoryItem({
+  const _CategoryItem(
+    this._manager, {
     Key? key,
     required this.item,
   }) : super(key: key);
 
+  final HomeManager _manager;
   final Converter item;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16.0),
-        color: ColorPalette.background,
-        boxShadow: [
-          BoxShadow(
-            offset: const Offset(2, 2),
-            blurRadius: 3.0,
-            spreadRadius: 2.0,
-            color: ColorPalette.shadow,
-          ),
-        ],
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SvgPicture.asset(
-            item.icon,
-            color: ColorPalette.content,
-          ),
-          const SizedBox(height: 24.0),
-          Text(
-            item.name,
-            style: const TextStyle(
-              fontSize: 16.0,
-              fontWeight: FontWeight.w500,
+    return InkWell(
+      onTap: _manager.navigateToConverter,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16.0),
+          color: ColorPalette.background,
+          boxShadow: [
+            BoxShadow(
+              offset: const Offset(2, 2),
+              blurRadius: 3.0,
+              spreadRadius: 2.0,
+              color: ColorPalette.shadow,
+            ),
+          ],
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SvgPicture.asset(
+              item.icon,
               color: ColorPalette.content,
             ),
-          ),
-        ],
+            const SizedBox(height: 24.0),
+            Text(
+              item.name,
+              style: const TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.w500,
+                color: ColorPalette.content,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

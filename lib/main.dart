@@ -1,21 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:unit_converter/view/src/pages/home/home_page.dart';
 
+import 'locator.dart';
 import 'view/view.dart';
 
 void main() {
-  runApp(const MyApp());
+  setUpLocator();
+  final navigatorKey = navigatorKeyBuilder(GlobalKey<NavigatorState>());
+
+  runApp(MyApp(navigatorKey));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp(this._navigatorKey, {super.key});
+
+  final GlobalKey<NavigatorState> _navigatorKey;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: View.theme,
-      home: const HomePage(),
+      navigatorKey: _navigatorKey,
+      onGenerateRoute: View.getRoutes,
+      initialRoute: View.getInitialRoute(),
     );
   }
 }
