@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart'
-    as inset;
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../locator.dart';
@@ -36,29 +34,7 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               children: [
                 const SizedBox(height: 32.0),
-                Container(
-                  height: kToolbarHeight,
-                  width: double.infinity,
-                  decoration: inset.BoxDecoration(
-                    borderRadius: BorderRadius.circular(16.0),
-                    color: ColorPalette.background,
-                    boxShadow: [
-                      inset.BoxShadow(
-                        offset: -const Offset(2, 2),
-                        blurRadius: 4.0,
-                        color: ColorPalette.primary,
-                        inset: true,
-                      ),
-                      inset.BoxShadow(
-                        offset: const Offset(2, 2),
-                        blurRadius: 2.0,
-                        color: ColorPalette.shadow,
-                        inset: true,
-                      ),
-                    ],
-                  ),
-                  child: const CustomInput(),
-                ),
+                const CustomInput(isSearch: true),
                 const SizedBox(height: 32.0),
                 _buildCategoryList(),
               ],
