@@ -17,9 +17,12 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final HomeManager _manager = locator<HomeManager>();
 
+  final TextEditingController _searchController = TextEditingController();
+
   @override
   void dispose() {
     _manager.dispose();
+    _searchController.dispose();
 
     super.dispose();
   }
@@ -34,7 +37,11 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               children: [
                 const SizedBox(height: 32.0),
-                CustomInput(onFocus: (_) {}, isSearch: true),
+                CustomInput(
+                  controller: _searchController,
+                  onFocus: (_) {},
+                  isSearch: true,
+                ),
                 const SizedBox(height: 32.0),
                 _buildCategoryList(),
               ],

@@ -9,12 +9,14 @@ import '../style/media.dart';
 class CustomInput extends StatelessWidget {
   const CustomInput({
     Key? key,
+    required this.controller,
     required this.onFocus,
     this.isFocused = false,
     this.inputType = TextInputType.text,
     this.isSearch = false,
   }) : super(key: key);
 
+  final TextEditingController controller;
   final Function(bool) onFocus;
   final bool isFocused;
   final TextInputType inputType;
@@ -61,6 +63,7 @@ class CustomInput extends StatelessWidget {
               textAlignVertical: TextAlignVertical.center,
               cursorColor: ColorPalette.primary,
               keyboardType: inputType,
+              controller: controller,
               focusNode: isFocused ? (FocusNode()..requestFocus()) : null,
               style: const TextStyle(
                 fontSize: 16.0,
