@@ -1,5 +1,8 @@
-import 'package:unit_converter/view/src/utils/converters/time/time_unit_type.dart';
+import 'package:injectable/injectable.dart';
 
+import 'time_unit_type.dart';
+
+@lazySingleton
 class DayUnitConverter {
   double convertToDay(TimeUnitType type, double value) {
     switch (type) {

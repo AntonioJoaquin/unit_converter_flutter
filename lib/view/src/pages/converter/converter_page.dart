@@ -1,12 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:unit_converter/view/src/common/widgets/custom_input.dart';
+import 'package:unit_converter/view/src/pages/converter/converter_manager.dart';
+import 'package:unit_converter/view/src/utils/converters/time/time_unit_type.dart';
 
+import '../../../../locator.dart';
 import '../../common/style/color.dart';
 import '../../common/style/media.dart';
 
-class ConverterPage extends StatelessWidget {
+class ConverterPage extends StatefulWidget {
   const ConverterPage({Key? key}) : super(key: key);
+
+  @override
+  State<ConverterPage> createState() => _ConverterPageState();
+}
+
+class _ConverterPageState extends State<ConverterPage> {
+  final ConverterManager _manager = locator<ConverterManager>();
+
+  @override
+  void dispose() {
+    _manager.dispose();
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,17 +55,47 @@ class ConverterPage extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 16.0),
-                const _UnitInput(unitName: 'Century', form: '/ 36500'),
+                _UnitInput(
+                  _manager,
+                  type: TimeUnitType.century,
+                  unitName: 'Century',
+                  form: '/ 36500',
+                ),
                 const SizedBox(height: 24.0),
-                const _UnitInput(unitName: 'Decade', form: '/ 3650'),
+                _UnitInput(
+                  _manager,
+                  type: TimeUnitType.decade,
+                  unitName: 'Decade',
+                  form: '/ 3650',
+                ),
                 const SizedBox(height: 24.0),
-                const _UnitInput(unitName: 'Year', form: '/ 365'),
+                _UnitInput(
+                  _manager,
+                  type: TimeUnitType.year,
+                  unitName: 'Year',
+                  form: '/ 365',
+                ),
                 const SizedBox(height: 24.0),
-                const _UnitInput(unitName: 'Month', form: '/ 30.415'),
+                _UnitInput(
+                  _manager,
+                  type: TimeUnitType.month,
+                  unitName: 'Month',
+                  form: '/ 30.415',
+                ),
                 const SizedBox(height: 24.0),
-                const _UnitInput(unitName: 'Week', form: '/ 30.415'),
+                _UnitInput(
+                  _manager,
+                  type: TimeUnitType.week,
+                  unitName: 'Week',
+                  form: '/ 30.415',
+                ),
                 const SizedBox(height: 24.0),
-                const _UnitInput(unitName: 'Day', form: ''),
+                _UnitInput(
+                  _manager,
+                  type: TimeUnitType.day,
+                  unitName: 'Day',
+                  form: '',
+                ),
               ],
             ),
           ),
@@ -59,12 +106,16 @@ class ConverterPage extends StatelessWidget {
 }
 
 class _UnitInput extends StatelessWidget {
-  const _UnitInput({
+  const _UnitInput(
+    this._manager, {
+    required this.type,
     required this.unitName,
     required this.form,
     Key? key,
   }) : super(key: key);
 
+  final ConverterManager _manager;
+  final TimeUnitType type;
   final String unitName;
   final String form;
 
@@ -82,7 +133,15 @@ class _UnitInput extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 8.0),
-        const CustomInput(inputType: TextInputType.number),
+        ValueListenableBuilder(
+          valueListenable: _manager.inputTypeFocused,
+          builder: (_, TimeUnitType? focusedType, __) => CustomInput(
+            onFocus: (isFocused) =>
+                isFocused ? _manager.onFocusInput(type) : {},
+            isFocused: focusedType == type,
+            inputType: TextInputType.number,
+          ),
+        ),
         const SizedBox(height: 8.0),
         RichText(
           text: TextSpan(

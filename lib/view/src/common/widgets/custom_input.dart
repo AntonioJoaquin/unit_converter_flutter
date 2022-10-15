@@ -9,10 +9,14 @@ import '../style/media.dart';
 class CustomInput extends StatelessWidget {
   const CustomInput({
     Key? key,
+    required this.onFocus,
+    this.isFocused = false,
     this.inputType = TextInputType.text,
     this.isSearch = false,
   }) : super(key: key);
 
+  final Function(bool) onFocus;
+  final bool isFocused;
   final TextInputType inputType;
   final bool isSearch;
 
@@ -23,21 +27,24 @@ class CustomInput extends StatelessWidget {
       width: double.infinity,
       decoration: inset.BoxDecoration(
         borderRadius: BorderRadius.circular(16.0),
+        border: isFocused ? Border.all(color: ColorPalette.primary) : null,
         color: ColorPalette.background,
-        boxShadow: [
-          inset.BoxShadow(
-            offset: -const Offset(2, 2),
-            blurRadius: 4.0,
-            color: ColorPalette.primary,
-            inset: true,
-          ),
-          inset.BoxShadow(
-            offset: const Offset(2, 2),
-            blurRadius: 2.0,
-            color: ColorPalette.shadow,
-            inset: true,
-          ),
-        ],
+        boxShadow: isFocused
+            ? null
+            : [
+                inset.BoxShadow(
+                  offset: -const Offset(2, 2),
+                  blurRadius: 4.0,
+                  color: ColorPalette.primary,
+                  inset: true,
+                ),
+                inset.BoxShadow(
+                  offset: const Offset(2, 2),
+                  blurRadius: 2.0,
+                  color: ColorPalette.shadow,
+                  inset: true,
+                ),
+              ],
       ),
       child: _buildInput(),
     );
@@ -47,14 +54,18 @@ class CustomInput extends StatelessWidget {
         width: double.infinity,
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Center(
-          child: TextField(
-            decoration: _buildInputDecoration(),
-            textAlignVertical: TextAlignVertical.center,
-            cursorColor: ColorPalette.primary,
-            keyboardType: inputType,
-            style: const TextStyle(
-              fontSize: 16.0,
-              color: ColorPalette.content,
+          child: Focus(
+            onFocusChange: onFocus.call,
+            child: TextField(
+              decoration: _buildInputDecoration(),
+              textAlignVertical: TextAlignVertical.center,
+              cursorColor: ColorPalette.primary,
+              keyboardType: inputType,
+              focusNode: isFocused ? (FocusNode()..requestFocus()) : null,
+              style: const TextStyle(
+                fontSize: 16.0,
+                color: ColorPalette.content,
+              ),
             ),
           ),
         ),

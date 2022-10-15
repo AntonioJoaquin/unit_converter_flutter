@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               children: [
                 const SizedBox(height: 32.0),
-                const CustomInput(isSearch: true),
+                CustomInput(onFocus: (_) {}, isSearch: true),
                 const SizedBox(height: 32.0),
                 _buildCategoryList(),
               ],
