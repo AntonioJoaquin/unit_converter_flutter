@@ -4,7 +4,7 @@ import 'time_unit_type.dart';
 
 @lazySingleton
 class WeekUnitConverter {
-  double convertToWeek(TimeUnitType type, double value) {
+  double convert(TimeUnitType type, double value) {
     switch (type) {
       case TimeUnitType.century:
         return _convertCenturyToWeek(value);

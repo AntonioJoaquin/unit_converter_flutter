@@ -18,23 +18,17 @@ class ConverterPage extends StatefulWidget {
 class _ConverterPageState extends State<ConverterPage> {
   final ConverterManager _manager = locator<ConverterManager>();
 
-  final TextEditingController _centuryController = TextEditingController();
-  final TextEditingController _decadeController = TextEditingController();
-  final TextEditingController _yearController = TextEditingController();
-  final TextEditingController _monthController = TextEditingController();
-  final TextEditingController _weekController = TextEditingController();
-  final TextEditingController _dayController = TextEditingController();
+  @override
+  void initState() {
+    _manager.timeControllerListeners.initListeners(_manager);
+
+    super.initState();
+  }
 
   @override
   void dispose() {
     _manager.dispose();
-
-    _centuryController.dispose();
-    _decadeController.dispose();
-    _yearController.dispose();
-    _monthController.dispose();
-    _weekController.dispose();
-    _dayController.dispose();
+    _manager.timeControllerListeners.dispose(_manager);
 
     super.dispose();
   }
@@ -72,37 +66,38 @@ class _ConverterPageState extends State<ConverterPage> {
                 UnitInput(
                   _manager,
                   type: TimeUnitType.century,
-                  controller: _centuryController,
+                  controller:
+                      _manager.timeControllerListeners.centuryController,
                 ),
                 const SizedBox(height: 24.0),
                 UnitInput(
                   _manager,
                   type: TimeUnitType.decade,
-                  controller: _decadeController,
+                  controller: _manager.timeControllerListeners.decadeController,
                 ),
                 const SizedBox(height: 24.0),
                 UnitInput(
                   _manager,
                   type: TimeUnitType.year,
-                  controller: _yearController,
+                  controller: _manager.timeControllerListeners.yearController,
                 ),
                 const SizedBox(height: 24.0),
                 UnitInput(
                   _manager,
                   type: TimeUnitType.month,
-                  controller: _monthController,
+                  controller: _manager.timeControllerListeners.monthController,
                 ),
                 const SizedBox(height: 24.0),
                 UnitInput(
                   _manager,
                   type: TimeUnitType.week,
-                  controller: _weekController,
+                  controller: _manager.timeControllerListeners.weekController,
                 ),
                 const SizedBox(height: 24.0),
                 UnitInput(
                   _manager,
                   type: TimeUnitType.day,
-                  controller: _dayController,
+                  controller: _manager.timeControllerListeners.dayController,
                 ),
               ],
             ),

@@ -4,7 +4,7 @@ import 'time_unit_type.dart';
 
 @lazySingleton
 class DecadeUnitConverter {
-  double convertToDecade(TimeUnitType type, double value) {
+  double convert(TimeUnitType type, double value) {
     switch (type) {
       case TimeUnitType.century:
         return _convertCenturyToDecade(value);
