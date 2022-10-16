@@ -52,14 +52,14 @@ class UnitInput extends StatelessWidget {
               ),
               children: [
                 const TextSpan(
-                  text: 'Form:',
+                  text: 'Form: ',
                   style: TextStyle(fontWeight: FontWeight.w300),
                 ),
                 TextSpan(
-                  text: typeFrom.name,
+                  text: '${typeFrom.name} ',
                   style: const TextStyle(fontWeight: FontWeight.w700),
                 ),
-                TextSpan(text: _manager.getToForm(typeFrom)),
+                TextSpan(text: _manager.getToForm(type)),
               ],
             ),
           ),
