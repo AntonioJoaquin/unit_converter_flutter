@@ -16,6 +16,18 @@ class DecadeUnitConverter {
         return _convertWeekToDecade(value);
       case TimeUnitType.day:
         return _convertDayToDecade(value);
+      case TimeUnitType.hour:
+        return _convertHourToDecade(value);
+      case TimeUnitType.minute:
+        return _convertMinuteToDecade(value);
+      case TimeUnitType.second:
+        return _convertSecondToDecade(value);
+      case TimeUnitType.millisecond:
+        return _convertMillisecondToDecade(value);
+      case TimeUnitType.microsecond:
+        return _convertMicrosecondToDecade(value);
+      case TimeUnitType.nanosecond:
+        return _convertNanosecondToDecade(value);
       default: // decade
 
         return value;
@@ -36,4 +48,22 @@ class DecadeUnitConverter {
 
   // From day
   double _convertDayToDecade(double value) => value / 3650;
+
+  // From hour
+  double _convertHourToDecade(double value) => value / 87600;
+
+  // From minute
+  double _convertMinuteToDecade(double value) => value / 5.256e+6;
+
+  // From second
+  double _convertSecondToDecade(double value) => value / 3.154e+8;
+
+  // From millisecond
+  double _convertMillisecondToDecade(double value) => value / 3.154e+11;
+
+  // From microsecond
+  double _convertMicrosecondToDecade(double value) => value / 3.154e+14;
+
+  // From nanosecond
+  double _convertNanosecondToDecade(double value) => value / 3.154e+17;
 }

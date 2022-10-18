@@ -62,48 +62,61 @@ class _ConverterPageState extends State<ConverterPage> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 16.0),
-                UnitInput(
-                  _manager,
-                  type: TimeUnitType.century,
-                  controller:
-                      _manager.timeControllerListeners.centuryController,
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: TimeUnitType.values.length,
+                  itemBuilder: (_, index) {
+                    final item = TimeUnitType.values[index];
+
+                    return Column(
+                      children: [
+                        const SizedBox(height: 24.0),
+                        UnitInput(
+                          _manager,
+                          type: item,
+                          controller: _getTextEditingControllers(item),
+                        ),
+                      ],
+                    );
+                  },
                 ),
-                const SizedBox(height: 24.0),
-                UnitInput(
-                  _manager,
-                  type: TimeUnitType.decade,
-                  controller: _manager.timeControllerListeners.decadeController,
-                ),
-                const SizedBox(height: 24.0),
-                UnitInput(
-                  _manager,
-                  type: TimeUnitType.year,
-                  controller: _manager.timeControllerListeners.yearController,
-                ),
-                const SizedBox(height: 24.0),
-                UnitInput(
-                  _manager,
-                  type: TimeUnitType.month,
-                  controller: _manager.timeControllerListeners.monthController,
-                ),
-                const SizedBox(height: 24.0),
-                UnitInput(
-                  _manager,
-                  type: TimeUnitType.week,
-                  controller: _manager.timeControllerListeners.weekController,
-                ),
-                const SizedBox(height: 24.0),
-                UnitInput(
-                  _manager,
-                  type: TimeUnitType.day,
-                  controller: _manager.timeControllerListeners.dayController,
-                ),
+                const SizedBox(height: 48.0),
               ],
             ),
           ),
         ),
       ),
     );
+  }
+
+  // Functions
+  TextEditingController _getTextEditingControllers(TimeUnitType type) {
+    switch (type) {
+      case TimeUnitType.century:
+        return _manager.timeControllerListeners.centuryController;
+      case TimeUnitType.decade:
+        return _manager.timeControllerListeners.decadeController;
+      case TimeUnitType.year:
+        return _manager.timeControllerListeners.yearController;
+      case TimeUnitType.month:
+        return _manager.timeControllerListeners.monthController;
+      case TimeUnitType.week:
+        return _manager.timeControllerListeners.weekController;
+      case TimeUnitType.day:
+        return _manager.timeControllerListeners.dayController;
+      case TimeUnitType.hour:
+        return _manager.timeControllerListeners.hourController;
+      case TimeUnitType.minute:
+        return _manager.timeControllerListeners.minuteController;
+      case TimeUnitType.second:
+        return _manager.timeControllerListeners.secondController;
+      case TimeUnitType.millisecond:
+        return _manager.timeControllerListeners.millisecondController;
+      case TimeUnitType.microsecond:
+        return _manager.timeControllerListeners.microsecondController;
+      default: // nanosecond
+        return _manager.timeControllerListeners.nanosecondController;
+    }
   }
 }

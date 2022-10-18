@@ -16,6 +16,18 @@ class CenturyUnitConverter {
         return _convertWeekToCentury(value);
       case TimeUnitType.day:
         return _convertDayToCentury(value);
+      case TimeUnitType.hour:
+        return _convertHourToCentury(value);
+      case TimeUnitType.minute:
+        return _convertMinuteToCentury(value);
+      case TimeUnitType.second:
+        return _convertSecondToCentury(value);
+      case TimeUnitType.millisecond:
+        return _convertMillisecondToCentury(value);
+      case TimeUnitType.microsecond:
+        return _convertMicrosecondToCentury(value);
+      case TimeUnitType.nanosecond:
+        return _convertNanosecondToCentury(value);
       default: // century
 
         return value;
@@ -36,4 +48,22 @@ class CenturyUnitConverter {
 
   // From day
   double _convertDayToCentury(double value) => value / 36500;
+
+  // From hour
+  double _convertHourToCentury(double value) => value / 876000;
+
+  // From minute
+  double _convertMinuteToCentury(double value) => value / 5.256e+7;
+
+  // From second
+  double _convertSecondToCentury(double value) => value / 3.154e+9;
+
+  // From millisecond
+  double _convertMillisecondToCentury(double value) => value / 3.154e+12;
+
+  // From microsecond
+  double _convertMicrosecondToCentury(double value) => value / 3.154e+15;
+
+  // From nanosecond
+  double _convertNanosecondToCentury(double value) => value / 3.154e+18;
 }

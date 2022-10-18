@@ -16,6 +16,18 @@ class DayUnitConverter {
         return _convertMonthToDay(value);
       case TimeUnitType.week:
         return _convertWeekToDay(value);
+      case TimeUnitType.hour:
+        return _convertHourToDay(value);
+      case TimeUnitType.minute:
+        return _convertMinuteToDay(value);
+      case TimeUnitType.second:
+        return _convertSecondToDay(value);
+      case TimeUnitType.millisecond:
+        return _convertMillisecondToDay(value);
+      case TimeUnitType.microsecond:
+        return _convertMicrosecondToDay(value);
+      case TimeUnitType.nanosecond:
+        return _convertNanosecondToDay(value);
       default: // day
 
         return value;
@@ -36,4 +48,22 @@ class DayUnitConverter {
 
   // From week
   double _convertWeekToDay(double value) => value * 7;
+
+  // From hour
+  double _convertHourToDay(double value) => value / 24;
+
+  // From minute
+  double _convertMinuteToDay(double value) => value / 1440;
+
+  // From second
+  double _convertSecondToDay(double value) => value / 86400;
+
+  // From millisecond
+  double _convertMillisecondToDay(double value) => value / 8.64e+7;
+
+  // From microsecond
+  double _convertMicrosecondToDay(double value) => value / 8.64e+10;
+
+  // From nanosecond
+  double _convertNanosecondToDay(double value) => value / 8.64e+13;
 }

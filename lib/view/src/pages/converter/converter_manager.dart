@@ -30,17 +30,29 @@ class ConverterManager {
   String getToForm(TimeUnitType type) {
     switch (_inputTypeFrom.value) {
       case TimeUnitType.century:
-        return type.toCentury;
+        return type.fromCentury;
       case TimeUnitType.decade:
-        return type.toDecade;
+        return type.fromDecade;
       case TimeUnitType.year:
-        return type.toYear;
+        return type.fromYear;
       case TimeUnitType.month:
-        return type.toMonth;
+        return type.fromMonth;
       case TimeUnitType.week:
-        return type.toWeek;
-      default: // day
-        return type.toDay;
+        return type.fromWeek;
+      case TimeUnitType.day:
+        return type.fromDay;
+      case TimeUnitType.hour:
+        return type.fromHour;
+      case TimeUnitType.minute:
+        return type.fromMinute;
+      case TimeUnitType.second:
+        return type.fromSecond;
+      case TimeUnitType.millisecond:
+        return type.fromMillisecond;
+      case TimeUnitType.microsecond:
+        return type.fromMicrosecond;
+      default: // nanosecond
+        return type.fromNanosecond;
     }
   }
 
@@ -95,6 +107,60 @@ class ConverterManager {
       if (_inputTypeFrom.value != TimeUnitType.day) {
         timeControllerListeners.setDayControllerValue(
           _timeConverter.dayUnitConverter.convert(
+            _inputTypeFrom.value,
+            value,
+          ),
+        );
+      }
+
+      if (_inputTypeFrom.value != TimeUnitType.hour) {
+        timeControllerListeners.setHourControllerValue(
+          _timeConverter.hourUnitConverter.convert(
+            _inputTypeFrom.value,
+            value,
+          ),
+        );
+      }
+
+      if (_inputTypeFrom.value != TimeUnitType.minute) {
+        timeControllerListeners.setMinuteControllerValue(
+          _timeConverter.minuteUnitConverter.convert(
+            _inputTypeFrom.value,
+            value,
+          ),
+        );
+      }
+
+      if (_inputTypeFrom.value != TimeUnitType.second) {
+        timeControllerListeners.setSecondControllerValue(
+          _timeConverter.secondUnitConverter.convert(
+            _inputTypeFrom.value,
+            value,
+          ),
+        );
+      }
+
+      if (_inputTypeFrom.value != TimeUnitType.millisecond) {
+        timeControllerListeners.setMillisecondControllerValue(
+          _timeConverter.millisecondUnitConverter.convert(
+            _inputTypeFrom.value,
+            value,
+          ),
+        );
+      }
+
+      if (_inputTypeFrom.value != TimeUnitType.microsecond) {
+        timeControllerListeners.setMicrosecondControllerValue(
+          _timeConverter.microsecondUnitConverter.convert(
+            _inputTypeFrom.value,
+            value,
+          ),
+        );
+      }
+
+      if (_inputTypeFrom.value != TimeUnitType.nanosecond) {
+        timeControllerListeners.setNanosecondControllerValue(
+          _timeConverter.nanosecondUnitConverter.convert(
             _inputTypeFrom.value,
             value,
           ),

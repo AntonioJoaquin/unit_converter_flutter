@@ -5,7 +5,7 @@ import 'package:unit_converter/view/src/utils/extensions/string_extensions.dart'
 import '../../../utils/converters/time/time_unit_type.dart';
 import '../converter_manager.dart';
 
-@lazySingleton
+@injectable
 class TimeControllerListeners {
   final TextEditingController centuryController = TextEditingController();
   final TextEditingController decadeController = TextEditingController();
@@ -13,6 +13,12 @@ class TimeControllerListeners {
   final TextEditingController monthController = TextEditingController();
   final TextEditingController weekController = TextEditingController();
   final TextEditingController dayController = TextEditingController();
+  final TextEditingController hourController = TextEditingController();
+  final TextEditingController minuteController = TextEditingController();
+  final TextEditingController secondController = TextEditingController();
+  final TextEditingController millisecondController = TextEditingController();
+  final TextEditingController microsecondController = TextEditingController();
+  final TextEditingController nanosecondController = TextEditingController();
 
   int centuryInputLength = 0;
   int decadeInputLength = 0;
@@ -20,6 +26,12 @@ class TimeControllerListeners {
   int monthInputLength = 0;
   int weekInputLength = 0;
   int dayInputLength = 0;
+  int hourInputLength = 0;
+  int minuteInputLength = 0;
+  int secondInputLength = 0;
+  int millisecondInputLength = 0;
+  int microsecondInputLength = 0;
+  int nanosecondInputLength = 0;
 
   double getConverterFromValue(TimeUnitType type) {
     switch (type) {
@@ -33,8 +45,20 @@ class TimeControllerListeners {
         return double.parse(monthController.value.text);
       case TimeUnitType.week:
         return double.parse(weekController.value.text);
-      default: // day
+      case TimeUnitType.day:
         return double.parse(dayController.value.text);
+      case TimeUnitType.hour:
+        return double.parse(hourController.value.text);
+      case TimeUnitType.minute:
+        return double.parse(minuteController.value.text);
+      case TimeUnitType.second:
+        return double.parse(secondController.value.text);
+      case TimeUnitType.millisecond:
+        return double.parse(millisecondController.value.text);
+      case TimeUnitType.microsecond:
+        return double.parse(microsecondController.value.text);
+      default: // nanosecond
+        return double.parse(nanosecondController.value.text);
     }
   }
 
@@ -46,6 +70,14 @@ class TimeControllerListeners {
     monthController.addListener(() => _onMonthInputListener(manager));
     weekController.addListener(() => _onWeekInputListener(manager));
     dayController.addListener(() => _onDayInputListener(manager));
+    hourController.addListener(() => _onHourInputListener(manager));
+    minuteController.addListener(() => _onMinuteInputListener(manager));
+    secondController.addListener(() => _onSecondInputListener(manager));
+    millisecondController
+        .addListener(() => _onMillisecondInputListener(manager));
+    microsecondController
+        .addListener(() => _onMicrosecondInputListener(manager));
+    nanosecondController.addListener(() => _onNanosecondInputListener(manager));
   }
 
   // dispose
@@ -56,6 +88,15 @@ class TimeControllerListeners {
     monthController.removeListener(() => _onMonthInputListener(manager));
     weekController.removeListener(() => _onWeekInputListener(manager));
     dayController.removeListener(() => _onDayInputListener(manager));
+    hourController.removeListener(() => _onHourInputListener(manager));
+    minuteController.removeListener(() => _onMinuteInputListener(manager));
+    secondController.removeListener(() => _onSecondInputListener(manager));
+    millisecondController
+        .removeListener(() => _onMillisecondInputListener(manager));
+    microsecondController
+        .removeListener(() => _onMicrosecondInputListener(manager));
+    nanosecondController
+        .removeListener(() => _onNanosecondInputListener(manager));
 
     centuryController.dispose();
     decadeController.dispose();
@@ -63,6 +104,12 @@ class TimeControllerListeners {
     monthController.dispose();
     weekController.dispose();
     dayController.dispose();
+    hourController.dispose();
+    minuteController.dispose();
+    secondController.dispose();
+    millisecondController.dispose();
+    microsecondController.dispose();
+    nanosecondController.dispose();
   }
 
   // listeners
@@ -150,6 +197,90 @@ class TimeControllerListeners {
     }
   }
 
+  void _onHourInputListener(ConverterManager manager) {
+    if (hourController.value.text.length != hourInputLength) {
+      if (manager.inputTypeFocused.value == TimeUnitType.hour) {
+        manager.setInputFrom(TimeUnitType.hour);
+
+        if (hourController.value.text.isNotEmpty) {
+          manager.convert(double.parse(hourController.value.text));
+        }
+      }
+
+      hourInputLength = hourController.value.text.length;
+    }
+  }
+
+  void _onMinuteInputListener(ConverterManager manager) {
+    if (minuteController.value.text.length != minuteInputLength) {
+      if (manager.inputTypeFocused.value == TimeUnitType.minute) {
+        manager.setInputFrom(TimeUnitType.minute);
+
+        if (minuteController.value.text.isNotEmpty) {
+          manager.convert(double.parse(minuteController.value.text));
+        }
+      }
+
+      minuteInputLength = minuteController.value.text.length;
+    }
+  }
+
+  void _onSecondInputListener(ConverterManager manager) {
+    if (secondController.value.text.length != secondInputLength) {
+      if (manager.inputTypeFocused.value == TimeUnitType.second) {
+        manager.setInputFrom(TimeUnitType.second);
+
+        if (secondController.value.text.isNotEmpty) {
+          manager.convert(double.parse(secondController.value.text));
+        }
+      }
+
+      secondInputLength = secondController.value.text.length;
+    }
+  }
+
+  void _onMillisecondInputListener(ConverterManager manager) {
+    if (millisecondController.value.text.length != millisecondInputLength) {
+      if (manager.inputTypeFocused.value == TimeUnitType.millisecond) {
+        manager.setInputFrom(TimeUnitType.millisecond);
+
+        if (millisecondController.value.text.isNotEmpty) {
+          manager.convert(double.parse(millisecondController.value.text));
+        }
+      }
+
+      millisecondInputLength = millisecondController.value.text.length;
+    }
+  }
+
+  void _onMicrosecondInputListener(ConverterManager manager) {
+    if (microsecondController.value.text.length != microsecondInputLength) {
+      if (manager.inputTypeFocused.value == TimeUnitType.microsecond) {
+        manager.setInputFrom(TimeUnitType.microsecond);
+
+        if (microsecondController.value.text.isNotEmpty) {
+          manager.convert(double.parse(microsecondController.value.text));
+        }
+      }
+
+      microsecondInputLength = microsecondController.value.text.length;
+    }
+  }
+
+  void _onNanosecondInputListener(ConverterManager manager) {
+    if (nanosecondController.value.text.length != nanosecondInputLength) {
+      if (manager.inputTypeFocused.value == TimeUnitType.nanosecond) {
+        manager.setInputFrom(TimeUnitType.nanosecond);
+
+        if (nanosecondController.value.text.isNotEmpty) {
+          manager.convert(double.parse(nanosecondController.value.text));
+        }
+      }
+
+      nanosecondInputLength = nanosecondController.value.text.length;
+    }
+  }
+
   // setters
   void setCenturyControllerValue(double value) =>
       centuryController.text = value.toString().removeTrailingZeros();
@@ -168,4 +299,22 @@ class TimeControllerListeners {
 
   void setDayControllerValue(double value) =>
       dayController.text = value.toString().removeTrailingZeros();
+
+  void setHourControllerValue(double value) =>
+      hourController.text = value.toString().removeTrailingZeros();
+
+  void setMinuteControllerValue(double value) =>
+      minuteController.text = value.toString().removeTrailingZeros();
+
+  void setSecondControllerValue(double value) =>
+      secondController.text = value.toString().removeTrailingZeros();
+
+  void setMillisecondControllerValue(double value) =>
+      millisecondController.text = value.toString().removeTrailingZeros();
+
+  void setMicrosecondControllerValue(double value) =>
+      microsecondController.text = value.toString().removeTrailingZeros();
+
+  void setNanosecondControllerValue(double value) =>
+      nanosecondController.text = value.toString().removeTrailingZeros();
 }

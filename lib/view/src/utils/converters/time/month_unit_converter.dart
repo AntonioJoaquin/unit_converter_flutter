@@ -16,6 +16,18 @@ class MonthUnitConverter {
         return _convertWeekToMonth(value);
       case TimeUnitType.day:
         return _convertDayToMonth(value);
+      case TimeUnitType.hour:
+        return _convertHourToMonth(value);
+      case TimeUnitType.minute:
+        return _convertMinuteToMonth(value);
+      case TimeUnitType.second:
+        return _convertSecondToMonth(value);
+      case TimeUnitType.millisecond:
+        return _convertMillisecondToMonth(value);
+      case TimeUnitType.microsecond:
+        return _convertMicrosecondToMonth(value);
+      case TimeUnitType.nanosecond:
+        return _convertNanosecondToMonth(value);
       default: // month
 
         return value;
@@ -36,4 +48,22 @@ class MonthUnitConverter {
 
   // From day
   double _convertDayToMonth(double value) => value / 30.417;
+
+  // From hour
+  double _convertHourToMonth(double value) => value / 730;
+
+  // From minute
+  double _convertMinuteToMonth(double value) => value / 43800;
+
+  // From second
+  double _convertSecondToMonth(double value) => value / 2.628e+6;
+
+  // From millisecond
+  double _convertMillisecondToMonth(double value) => value / 2.628e+9;
+
+  // From microsecond
+  double _convertMicrosecondToMonth(double value) => value / 2.628e+12;
+
+  // From nanosecond
+  double _convertNanosecondToMonth(double value) => value / 2.628e+15;
 }
