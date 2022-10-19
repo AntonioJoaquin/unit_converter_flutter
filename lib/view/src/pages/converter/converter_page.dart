@@ -41,6 +41,7 @@ class _ConverterPageState extends State<ConverterPage> {
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: TabItem(
                       _manager,
+                      index: index,
                       item: Converter.values[index],
                     ),
                   ),
