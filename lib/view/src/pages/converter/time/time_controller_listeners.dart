@@ -3,7 +3,7 @@ import 'package:injectable/injectable.dart';
 import 'package:unit_converter/view/src/utils/extensions/string_extensions.dart';
 
 import '../../../utils/converters/time/time_unit_type.dart';
-import '../converter_manager.dart';
+import 'time_tab_manager.dart';
 
 @injectable
 class TimeControllerListeners {
@@ -63,7 +63,7 @@ class TimeControllerListeners {
   }
 
   // create
-  void initListeners(ConverterManager manager) {
+  void initListeners(TimeTabManager manager) {
     centuryController.addListener(() => _onCenturyInputListener(manager));
     decadeController.addListener(() => _onDecadeInputListener(manager));
     yearController.addListener(() => _onYearInputListener(manager));
@@ -81,7 +81,7 @@ class TimeControllerListeners {
   }
 
   // dispose
-  void dispose(ConverterManager manager) {
+  void dispose(TimeTabManager manager) {
     centuryController.removeListener(() => _onCenturyInputListener(manager));
     decadeController.removeListener(() => _onDecadeInputListener(manager));
     yearController.removeListener(() => _onYearInputListener(manager));
@@ -113,7 +113,7 @@ class TimeControllerListeners {
   }
 
   // listeners
-  void _onCenturyInputListener(ConverterManager manager) {
+  void _onCenturyInputListener(TimeTabManager manager) {
     if (centuryController.value.text.length != centuryInputLength) {
       if (manager.inputTypeFocused.value == TimeUnitType.century) {
         manager.setInputFrom(TimeUnitType.century);
@@ -127,7 +127,7 @@ class TimeControllerListeners {
     }
   }
 
-  void _onDecadeInputListener(ConverterManager manager) {
+  void _onDecadeInputListener(TimeTabManager manager) {
     if (decadeController.value.text.length != decadeInputLength) {
       if (manager.inputTypeFocused.value == TimeUnitType.decade) {
         manager.setInputFrom(TimeUnitType.decade);
@@ -141,7 +141,7 @@ class TimeControllerListeners {
     }
   }
 
-  void _onYearInputListener(ConverterManager manager) {
+  void _onYearInputListener(TimeTabManager manager) {
     if (yearController.value.text.length != yearInputLength) {
       if (manager.inputTypeFocused.value == TimeUnitType.year) {
         manager.setInputFrom(TimeUnitType.year);
@@ -155,7 +155,7 @@ class TimeControllerListeners {
     }
   }
 
-  void _onMonthInputListener(ConverterManager manager) {
+  void _onMonthInputListener(TimeTabManager manager) {
     if (monthController.value.text.length != monthInputLength) {
       if (manager.inputTypeFocused.value == TimeUnitType.month) {
         manager.setInputFrom(TimeUnitType.month);
@@ -169,7 +169,7 @@ class TimeControllerListeners {
     }
   }
 
-  void _onWeekInputListener(ConverterManager manager) {
+  void _onWeekInputListener(TimeTabManager manager) {
     if (weekController.value.text.length != weekInputLength) {
       if (manager.inputTypeFocused.value == TimeUnitType.week) {
         manager.setInputFrom(TimeUnitType.week);
@@ -183,7 +183,7 @@ class TimeControllerListeners {
     }
   }
 
-  void _onDayInputListener(ConverterManager manager) {
+  void _onDayInputListener(TimeTabManager manager) {
     if (dayController.value.text.length != dayInputLength) {
       if (manager.inputTypeFocused.value == TimeUnitType.day) {
         manager.setInputFrom(TimeUnitType.day);
@@ -197,7 +197,7 @@ class TimeControllerListeners {
     }
   }
 
-  void _onHourInputListener(ConverterManager manager) {
+  void _onHourInputListener(TimeTabManager manager) {
     if (hourController.value.text.length != hourInputLength) {
       if (manager.inputTypeFocused.value == TimeUnitType.hour) {
         manager.setInputFrom(TimeUnitType.hour);
@@ -211,7 +211,7 @@ class TimeControllerListeners {
     }
   }
 
-  void _onMinuteInputListener(ConverterManager manager) {
+  void _onMinuteInputListener(TimeTabManager manager) {
     if (minuteController.value.text.length != minuteInputLength) {
       if (manager.inputTypeFocused.value == TimeUnitType.minute) {
         manager.setInputFrom(TimeUnitType.minute);
@@ -225,7 +225,7 @@ class TimeControllerListeners {
     }
   }
 
-  void _onSecondInputListener(ConverterManager manager) {
+  void _onSecondInputListener(TimeTabManager manager) {
     if (secondController.value.text.length != secondInputLength) {
       if (manager.inputTypeFocused.value == TimeUnitType.second) {
         manager.setInputFrom(TimeUnitType.second);
@@ -239,7 +239,7 @@ class TimeControllerListeners {
     }
   }
 
-  void _onMillisecondInputListener(ConverterManager manager) {
+  void _onMillisecondInputListener(TimeTabManager manager) {
     if (millisecondController.value.text.length != millisecondInputLength) {
       if (manager.inputTypeFocused.value == TimeUnitType.millisecond) {
         manager.setInputFrom(TimeUnitType.millisecond);
@@ -253,7 +253,7 @@ class TimeControllerListeners {
     }
   }
 
-  void _onMicrosecondInputListener(ConverterManager manager) {
+  void _onMicrosecondInputListener(TimeTabManager manager) {
     if (microsecondController.value.text.length != microsecondInputLength) {
       if (manager.inputTypeFocused.value == TimeUnitType.microsecond) {
         manager.setInputFrom(TimeUnitType.microsecond);
@@ -267,7 +267,7 @@ class TimeControllerListeners {
     }
   }
 
-  void _onNanosecondInputListener(ConverterManager manager) {
+  void _onNanosecondInputListener(TimeTabManager manager) {
     if (nanosecondController.value.text.length != nanosecondInputLength) {
       if (manager.inputTypeFocused.value == TimeUnitType.nanosecond) {
         manager.setInputFrom(TimeUnitType.nanosecond);

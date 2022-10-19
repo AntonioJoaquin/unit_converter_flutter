@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
-import '../../../common/style/color.dart';
-import '../../../common/widgets/custom_input.dart';
-import '../../../utils/converters/time/time_unit_type.dart';
-import '../converter_manager.dart';
+import '../../../../common/style/color.dart';
+import '../../../../common/widgets/custom_input.dart';
+import '../../../../utils/converters/temperature/temperature_unit_tytpe.dart';
+import '../temperature_tab_manager.dart';
 
-class UnitInput extends StatelessWidget {
-  const UnitInput(
+class TemperatureUnitInput extends StatelessWidget {
+  const TemperatureUnitInput(
     this._manager, {
     required this.type,
     required this.controller,
     Key? key,
   }) : super(key: key);
 
-  final ConverterManager _manager;
-  final TimeUnitType type;
+  final TemperatureTabManager _manager;
+  final TemperatureUnitType type;
   final TextEditingController controller;
 
   @override
@@ -33,7 +33,7 @@ class UnitInput extends StatelessWidget {
         const SizedBox(height: 8.0),
         ValueListenableBuilder(
           valueListenable: _manager.inputTypeFocused,
-          builder: (_, TimeUnitType? focusedType, __) => CustomInput(
+          builder: (_, TemperatureUnitType? focusedType, __) => CustomInput(
             controller: controller,
             onFocus: (isFocused) =>
                 isFocused ? _manager.onFocusInput(type) : {},
@@ -44,7 +44,7 @@ class UnitInput extends StatelessWidget {
         const SizedBox(height: 8.0),
         ValueListenableBuilder(
           valueListenable: _manager.inputTypeFrom,
-          builder: (_, TimeUnitType typeFrom, __) => RichText(
+          builder: (_, TemperatureUnitType typeFrom, __) => RichText(
             text: TextSpan(
               style: const TextStyle(
                 fontSize: 16.0,
