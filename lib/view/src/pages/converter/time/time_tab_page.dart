@@ -35,46 +35,52 @@ class _TimeTabPageState extends State<TimeTabPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24.0),
+        child: Column(
           children: [
-            SvgPicture.asset(
-              Media.icTime,
-              color: ColorPalette.content,
-              height: 32.0,
-            ),
-            const SizedBox(width: 4.0),
-            const Text(
-              'Time',
-              style: TextStyle(
-                fontSize: 24.0,
-                fontWeight: FontWeight.w300,
-                color: ColorPalette.content,
-              ),
-            ),
-          ],
-        ),
-        ListView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: TimeUnitType.values.length,
-          itemBuilder: (_, index) {
-            final item = TimeUnitType.values[index];
-
-            return Column(
+            Row(
               children: [
-                const SizedBox(height: 24.0),
-                TimeUnitInput(
-                  _manager,
-                  type: item,
-                  controller: _getTextEditingControllers(item),
+                SvgPicture.asset(
+                  Media.icTime,
+                  color: ColorPalette.content,
+                  height: 32.0,
+                ),
+                const SizedBox(width: 4.0),
+                const Text(
+                  'Time',
+                  style: TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.w300,
+                    color: ColorPalette.content,
+                  ),
                 ),
               ],
-            );
-          },
+            ),
+            ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: TimeUnitType.values.length,
+              itemBuilder: (_, index) {
+                final item = TimeUnitType.values[index];
+
+                return Column(
+                  children: [
+                    const SizedBox(height: 24.0),
+                    TimeUnitInput(
+                      _manager,
+                      type: item,
+                      controller: _getTextEditingControllers(item),
+                    ),
+                  ],
+                );
+              },
+            ),
+            const SizedBox(height: 48.0),
+          ],
         ),
-      ],
+      ),
     );
   }
 
