@@ -36,6 +36,7 @@ class _TemperatureTabPageState extends State<TemperatureTabPage> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
