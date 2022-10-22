@@ -19,7 +19,8 @@ class _ConverterPageState extends State<ConverterPage> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
+    _manager.dispose();
+
     super.dispose();
   }
 
