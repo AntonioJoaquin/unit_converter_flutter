@@ -7,6 +7,7 @@ import 'longitude/longitude_tab_page.dart';
 import 'mass/mass_tab_page.dart';
 import 'temperature/temperature_tab_page.dart';
 import 'time/time_tab_page.dart';
+import 'velocity/velocity_tab_page.dart';
 import 'widgets/tab_item.dart';
 
 class ConverterPage extends StatefulWidget {
@@ -57,6 +58,7 @@ class _ConverterPageState extends State<ConverterPage> {
                   TemperatureTabPage(),
                   LongitudeTabPage(),
                   MassTabPage(),
+                  VelocityTabPage(),
                 ],
               ),
             ),

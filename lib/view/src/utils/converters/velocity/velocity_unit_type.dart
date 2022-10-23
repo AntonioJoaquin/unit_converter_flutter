@@ -1,4 +1,4 @@
-enum TimeUnitType {
+enum VelocityUnitType {
   milePerHour(
     name: 'milePerHour',
     fromMilePerHour: '',
@@ -40,7 +40,7 @@ enum TimeUnitType {
     fromKnot: '',
   );
 
-  const TimeUnitType({
+  const VelocityUnitType({
     required this.name,
     required this.fromMilePerHour,
     required this.fromFootPerSecond,

@@ -5,5 +5,6 @@ abstract class Media {
   static const String icSearch = 'assets/icons/ic_search.svg';
   static const String icTemperature = 'assets/icons/ic_temperature.svg';
   static const String icTime = 'assets/icons/ic_time.svg';
+  static const String icVelocity = 'assets/icons/ic_velocity.svg';
   static const String icVolume = 'assets/icons/ic_volume.svg';
 }
