@@ -5,6 +5,7 @@ import '../../common/converter.dart';
 import 'converter_manager.dart';
 import 'longitude/longitude_tab_page.dart';
 import 'mass/mass_tab_page.dart';
+import 'money/money_tab_page.dart';
 import 'temperature/temperature_tab_page.dart';
 import 'time/time_tab_page.dart';
 import 'velocity/velocity_tab_page.dart';
@@ -59,6 +60,7 @@ class _ConverterPageState extends State<ConverterPage> {
                   LongitudeTabPage(),
                   MassTabPage(),
                   VelocityTabPage(),
+                  MoneyTabPage(),
                 ],
               ),
             ),
