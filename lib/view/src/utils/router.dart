@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 
+import '../pages/converter/converter_arguments.dart';
 import '../pages/converter/converter_page.dart';
 import '../pages/home/home_page.dart';
 
@@ -19,7 +20,11 @@ abstract class AppRouter {
         return _fadeRoute(const HomePage(), homeRoute);
 
       case converterRoute:
-        return _fadeRoute(const ConverterPage(), converterRoute);
+        return _fadeRoute(
+            ConverterPage(
+              (settings.arguments as ConverterArguments).converterCategory,
+            ),
+            converterRoute);
 
       default:
         return _fadeRoute(const HomePage(), homeRoute);

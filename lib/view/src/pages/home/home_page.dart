@@ -28,29 +28,27 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0),
-            child: Column(
-              children: [
-                const SizedBox(height: 32.0),
-                CustomInput(
-                  controller: _searchController,
-                  onFocus: (_) {},
-                  isSearch: true,
-                ),
-                const SizedBox(height: 32.0),
-                _buildCategoryList(),
-              ],
+  Widget build(BuildContext context) => Scaffold(
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: Column(
+                children: [
+                  const SizedBox(height: 32.0),
+                  CustomInput(
+                    controller: _searchController,
+                    onFocus: (_) {},
+                    isSearch: true,
+                  ),
+                  const SizedBox(height: 32.0),
+                  _buildCategoryList(),
+                ],
+              ),
             ),
           ),
         ),
-      ),
-    );
-  }
+      );
 
   Widget _buildCategoryList() => GridView.builder(
         shrinkWrap: true,
@@ -81,8 +79,8 @@ class _CategoryItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: _manager.navigateToConverter,
+    return GestureDetector(
+      onTap: () => _manager.navigateToConverter(item),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16.0),

@@ -26,7 +26,7 @@ class MassUnitInput extends StatelessWidget {
           type.name,
           style: const TextStyle(
             fontSize: 16.0,
-            fontWeight: FontWeight.w600,
+            fontWeight: FontWeight.w500,
             color: ColorPalette.content,
           ),
         ),
@@ -57,7 +57,7 @@ class MassUnitInput extends StatelessWidget {
                 ),
                 TextSpan(
                   text: '${typeFrom.name} ',
-                  style: const TextStyle(fontWeight: FontWeight.w700),
+                  style: const TextStyle(fontWeight: FontWeight.w800),
                 ),
                 TextSpan(text: _manager.getToForm(type)),
               ],
