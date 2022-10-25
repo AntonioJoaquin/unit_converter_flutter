@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import '../pages/converter/converter_arguments.dart';
 import '../pages/converter/converter_page.dart';
 import '../pages/home/home_page.dart';
+import '../pages/splash/splash_page.dart';
 
 abstract class AppRouter {
   static const String splashRoute = '/';
@@ -14,7 +15,7 @@ abstract class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case splashRoute:
-      // return _fadeRoute(const SplashPage(), splashRoute);
+        return _fadeRoute(SplashPage(), splashRoute);
 
       case homeRoute:
         return _fadeRoute(const HomePage(), homeRoute);
