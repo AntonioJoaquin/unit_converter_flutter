@@ -35,15 +35,9 @@ class CustomInput extends StatelessWidget {
             ? null
             : [
                 inset.BoxShadow(
-                  offset: -const Offset(2, 2),
-                  blurRadius: 4.0,
+                  offset: -const Offset(1, 1),
+                  blurRadius: 6.0,
                   color: ColorPalette.primary,
-                  inset: true,
-                ),
-                inset.BoxShadow(
-                  offset: const Offset(2, 2),
-                  blurRadius: 2.0,
-                  color: ColorPalette.shadow,
                   inset: true,
                 ),
               ],
