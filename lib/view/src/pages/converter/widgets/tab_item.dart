@@ -11,14 +11,22 @@ class TabItem extends StatelessWidget {
     Key? key,
     required this.index,
     required this.item,
+    required this.selectedIndex,
+    required this.setInitialContext,
   }) : super(key: key);
 
   final ConverterManager _manager;
   final int index;
   final Converter item;
+  final int selectedIndex;
+  final Function setInitialContext;
 
   @override
   Widget build(BuildContext context) {
+    if (index == selectedIndex) {
+      setInitialContext.call(context);
+    }
+
     return GestureDetector(
       onTap: () => _manager.selectTab(index), //_manager.navigateToConverter,
       child: ValueListenableBuilder(

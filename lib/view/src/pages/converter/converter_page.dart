@@ -26,12 +26,21 @@ class ConverterPage extends StatefulWidget {
 class _ConverterPageState extends State<ConverterPage> {
   final ConverterManager _manager = locator<ConverterManager>();
 
+  final ScrollController _scrollController = ScrollController();
   late PageController _pageController;
+  late BuildContext _initialTabContext;
 
   @override
   void initState() {
     _pageController = PageController(initialPage: widget.converterCategory.id);
     _manager.initConverter(widget.converterCategory.id, _pageController);
+
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => Future.delayed(
+        const Duration(milliseconds: 300),
+        () => _manager.initialAutoScroll(_initialTabContext),
+      ),
+    );
 
     super.initState();
   }
@@ -39,10 +48,14 @@ class _ConverterPageState extends State<ConverterPage> {
   @override
   void dispose() {
     _manager.dispose();
+    _scrollController.dispose();
     _pageController.dispose();
 
     super.dispose();
   }
+
+  void _setInitialTabIndex(BuildContext context) =>
+      _initialTabContext = context;
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -55,15 +68,23 @@ class _ConverterPageState extends State<ConverterPage> {
                 child: ListView.builder(
                   physics: const BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
-                  itemCount: Converter.values.length,
-                  itemBuilder: (_, index) => Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: TabItem(
-                      _manager,
-                      index: index,
-                      item: Converter.values[index],
-                    ),
-                  ),
+                  controller: _scrollController,
+                  itemCount: _manager.categoryLabels.length,
+                  itemBuilder: (_, index) {
+                    final item = _manager.categoryLabels[index];
+
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: TabItem(
+                        _manager,
+                        index: index,
+                        item: item.category,
+                        selectedIndex: widget.converterCategory.id,
+                        setInitialContext: (context) =>
+                            _setInitialTabIndex(context),
+                      ),
+                    );
+                  },
                 ),
               ),
               const SizedBox(height: 32.0),
