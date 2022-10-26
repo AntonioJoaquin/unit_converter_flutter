@@ -4,7 +4,6 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../locator.dart';
 import '../../common/converter.dart';
 import '../../common/style/color.dart';
-import '../../common/widgets/custom_input.dart';
 import 'home_manager.dart';
 
 class HomePage extends StatefulWidget {
@@ -35,12 +34,6 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
               child: Column(
                 children: [
-                  const SizedBox(height: 32.0),
-                  CustomInput(
-                    controller: _searchController,
-                    onFocus: (_) {},
-                    isSearch: true,
-                  ),
                   const SizedBox(height: 32.0),
                   _buildCategoryList(),
                 ],
